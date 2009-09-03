@@ -23,6 +23,6 @@ cat $LISTS | grep '^<LI>.*<P>$' \
       echo "$LINE"
       echo "    -- Things I'd Do If I Ever Became An Evil Overlord"
       echo "%"
-    done >> eviloverlord
+    done | fold -s -w78 > eviloverlord
 
 strfile eviloverlord
