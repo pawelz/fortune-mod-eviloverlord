@@ -17,7 +17,8 @@ LISTS="{overlord.html,dungeon_a.html,dungeon_b.html}"
 
 [ "$1" == "--download" ] && wget $BASEURL$LISTS && exit 0
 
-cat $LISTS | grep '^<LI>.*<P>$' \
+for I in $LISTS; do awk -ve=0 '/\<\/OL\>/ {e=1} {if (e!=1) print}' $I; done \
+  | grep '^<LI>.*<P>$' \
   | sed 's,<[^>]*>,,g' \
   | while read LINE; do
       echo "$LINE"
